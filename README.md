@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Project-med 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is my attempt at helping people in this stressful times of covid, by providing home delivery of medicine,
+all one has to do is register himself/herself on the website/application and add the required medicines to the cart 
 
 ## Available Scripts
 
