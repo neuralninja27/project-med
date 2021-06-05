@@ -1,0 +1,37 @@
+.Navbar-brand {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.3rem;
+    text-decoration: none;
+    margin-right: 1em;
+    font-weight: 500;
+}
+
+.Navbar-brand:hover {
+    color: #fff;
+    transition: 0.35s ease-in-out;
+}
+
+.Navbar-Link{
+    text-decoration: none ;
+    color: rgba(255, 255, 255, 0.6);
+    margin-right: 1em;
+}
+
+.Navbar-Link h5{
+    font-weight: 400;
+}
+
+.Navbar-Link:hover {
+    color: #fff;
+    transition: 0.35s ease-in-out;
+}
+
+.Navbar-search {
+    height: 2.5em;
+    width: 30vw
+}
+
+.Navbar-search-button{
+    outline: none;
+    
+}
