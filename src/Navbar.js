@@ -16,12 +16,12 @@ class Navbar extends Component {
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className= "navbar-nav me-auto mb-lg-0">
-                                <Link className= "Navbar-Link" to="about">
+                                <Link className= "Navbar-Link" to="/about">
                                     <li className= "nav-item">
                                         About
                                     </li>
                                 </Link>
-                                <Link className="Navbar-Link" to= "/sign-in-up">
+                                <Link className="Navbar-Link" to= "/sign-in-up/login">
                                     <li className= "nav-item ">
                                         Register | Login
                                     </li>
