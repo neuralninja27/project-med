@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {Component}from 'react';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
+import { withStyles } from "@material-ui/core/styles";
 import CardActions from '@material-ui/core/CardActions';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { makeStyles } from '@material-ui/core';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
-const useStyles = makeStyles({
+
+const styles = ({
     checkbox:{
         display: "block",        
     },
@@ -48,23 +50,69 @@ const useStyles = makeStyles({
     },
 });
 
-function LogIn() {
-    const classes = useStyles();
-    return (
+class LogIn extends Component{
+    constructor(props){
+        super(props);
+        this.state ={
+                emailId        : '' ,
+                password       : '',
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount (){
+        // Custom form validation to check whether the 2 password fields match
+        ValidatorForm.addValidationRule('doPasswordMatch', (value) => {
+            if(value !== this.state.password) 
+                return false;
+            return true;
+        });
+    }
+
+    componentWillMount(){
+        // To remove the validation when not necessary
+        ValidatorForm.removeValidationRule('doPasswordMatch')
+    }
+
+    handleChange (event){
+        this.setState({
+            [event.target.name]: event.target.value,
+        })
+    }
+
+    handleSubmit (event){
+
+    }
+
+    render(){
+        const { classes } = this.props;
+        const {emailId, password} = this.state
+    return(
         <>
-            <form noValidate autoComplete = "off">
-                <TextField 
-                    className = {classes.textInput}
-                    color     = "secondary"
-                    label     = "Email-id" 
+            <ValidatorForm noValidate autoComplete = "off" onSubmit={this.handleSubmit}>
+                <TextValidator 
+                    className     = {classes.textInput}
+                    onChange      = {this.handleChange}
+                    value         = {emailId}
+                    name          = "emailId"
+                    color         = "secondary"
+                    label         = "Email-id" 
+                    validators    ={['required', 'isEmail']}
+                    errorMessages ={['Emai-Id is required', 'email is not valid']}
                     fullWidth
                 />
-                <TextField 
-                    className = {classes.textInput}
-                    id        = "standard-password-input"
-                    color     = "secondary"
-                    type      = "password"
-                    label     = "Password"
+                <TextValidator 
+                    className     = {classes.textInput}
+                    value         = {password}
+                    onChange      = {this.handleChange}
+                    id            = "standard-password-input"
+                    color         = "secondary"
+                    name          = "password"
+                    type          = "password"
+                    label         = "Password"
+                    validators    ={['required']}
+                    errorMessages ={['Password cannot be empty']}
                     fullWidth
                 />
                 <CardActions>
@@ -81,12 +129,13 @@ function LogIn() {
                     <Button 
                         variant   = "outlined" 
                         color     = "secondary"
+                        type      = "submit"
                         className = {classes.submitBtn}
                     >
                         Submit
                     </Button>
                 </CardActions>
-            </form>
+            </ValidatorForm>
             <div className={classes.hr}></div>
             <CardActions>
                 <Button
@@ -99,6 +148,7 @@ function LogIn() {
            </CardActions>
         </>
     )
+    }
 }
 
-export default LogIn;
+export default withStyles(styles)(LogIn); 

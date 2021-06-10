@@ -51,7 +51,8 @@ const useStyles = makeStyles({
             animation: `$BtnAnimations 4s ease infinite`,
         },
         '&:focus':{
-            color: "#f51978"
+            color: "#f51978",
+            outline: "none"
         },
         
     },
@@ -75,73 +76,51 @@ const useStyles = makeStyles({
             animation: `$BtnAnimations 4s ease infinite`,
         },
         '&:focus':{
-            color: "#f51978"
+            color: "#f51978",
+            outline: "none"
         },
         
-    },
-    checkbox:{
-        display: "block",        
-    },
-    submitBtn: {
-        display: "block",
-        marginTop: "1em",
-        borderRadius: "15px",
-        marginBottom: "1em",
-        minWidth: "90%",
-    },
-    textInput: {
-        minWidth: "90%",
-        margin: "5px 0"
-    },
-    hr: {
-    border: 0,
-    height: "1px",
-    margin: "1em 0",
-    maxWidth: "90%",
-    backgroundImage: "linear-gradient(to right, rgba(245,25,120, 0), rgba(245,25,120), rgba(245,25,120, 0))"
-    },
-    forgotPwd: {
-        textDecoration: "none",
-        marginTop: "1em",
-        minWidth: "90%",
-        textAlign: "center",
-        textTransform: "uppercase",
-        color: "rgba(245, 25, 120, 0.75)",
-        transition: "0.35s ease-in-out", 
-        '&:hover': {
-            textDecoration: "none !important",
-            color: "#f51978",
-            cursor: "pointer"
-        },
-        '&:focus': {
-            color: "#f51978"
-        },
     },
 });
 
 function LogInSignUp({login}){ 
-    const [showLogIn, setShowLogIn] = useState(login);
+    const [showLogIn, setShowLogIn]     = useState(login);
     const [showSignUp, setShowSignUp]   = useState(!login);
-    const [member, setMember] = useState(false);
+    const [member, setMember]           = useState(login);
 
     const logInRef = useRef(null);
     const signUpRef = useRef(null);
     
+    // useEffect here is used to focus on the Log in/ Sign up button on every refresh
     useEffect( ()=>{
-        if(login)logInRef.current.focus();
-        else signUpRef.current.focus();
+        if(login)
+            logInRef.current.focus();
+        else 
+            signUpRef.current.focus();
     });
 
+    // To switch url and displays the log-in form
     const handleClickLogIn = () =>{
+        if(member){
         setShowLogIn(true);
         setShowSignUp(false);
+        }
     };
 
+    // To switch url and displays the sign-up form
     const handleClickSignUp = () =>{
         setShowSignUp(true);
         setShowLogIn(false);
     };
+    
+    // To Re-render the /sign-in-up/login page
+    const handleClickUpdateMember = () =>{
+        setMember(true);
+        if(member)
+            handleClickLogIn();
+    }
 
+    // Handles the submission of the form
     const handleSubmit = (event) => {
        event.prevebntDefault();
     }
@@ -187,7 +166,10 @@ function LogInSignUp({login}){
                             (showLogIn && !showSignUp) ? 
                                 <LogIn handleSubmit={handleSubmit}/> 
                                 : 
-                                <SignUp  handleSubmit={handleSubmit}/>
+                                <SignUp  
+                                    handleSubmit      = {handleSubmit} 
+                                    onClick           = {handleClickUpdateMember}
+                                />
                         }
                     </CardContent>
                 </Container>

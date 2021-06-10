@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
+import { withStyles } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import CardActions from '@material-ui/core/CardActions';
-import { makeStyles } from '@material-ui/core';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
-const useStyles = makeStyles({
+const styles = ({
     checkbox:{
         display: "block",        
     },
@@ -46,61 +47,123 @@ const useStyles = makeStyles({
     },
 });
 
-function SignUp() {
-    const classes = useStyles();
+class SignUp extends Component{
+    constructor(props){
+        super(props);
+        this.state ={
+                name           : '' ,
+                emailId        : '' ,
+                password       : '',
+                repeatPassword : ''
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount (){
+        // Custom form validation to check whether the 2 password fields match
+        ValidatorForm.addValidationRule('doPasswordMatch', (value) => {
+            if(value !== this.state.password) 
+                return false;
+            return true;
+        });
+    }
+
+    componentWillMount(){
+        // To remove the validation when not necessary
+        ValidatorForm.removeValidationRule('doPasswordMatch')
+    }
+
+    handleChange (event){
+        this.setState({
+            [event.target.name]: event.target.value,
+        })
+    }
+
+    handleSubmit (event){
+
+    }
+
+    render(){
+        const { classes, onClick } = this.props;
+        const {name, emailId, password, repeatPassword} = this.state
     return(
         <>
-            <form noValidate autoComplete = "off">
-                <TextField 
-                    className = {classes.textInput}
-                    color     = "secondary"
-                    label     = "Full Name" 
+            <ValidatorForm noValidate autoComplete = "off" onSubmit={this.handleSubmit}>
+                <TextValidator 
+                    className     = {classes.textInput}
+                    onChange      = {this.handleChange}
+                    value         = {name}
+                    name          = "name"
+                    color         = "secondary"
+                    label         = "Full Name"
+                    validators    ={['required']}
+                    errorMessages ={['Name is required']} 
                     fullWidth
                 />
-                <TextField 
-                    className = {classes.textInput}
-                    color     = "secondary"
-                    label     = "Email-id" 
+                <TextValidator 
+                    className     = {classes.textInput}
+                    onChange      = {this.handleChange}
+                    value         = {emailId}
+                    name          = "emailId"
+                    color         = "secondary"
+                    label         = "Email-id" 
+                    validators    ={['required', 'isEmail']}
+                    errorMessages ={['Email-Id is required', 'email is not valid']}
                     fullWidth
                 />
-                <TextField 
-                    className = {classes.textInput}
-                    id        = "standard-password-input"
-                    color     = "secondary"
-                    type      = "password"
-                    label     = "Password" 
+                <TextValidator 
+                    className     = {classes.textInput}
+                    value         = {password}
+                    onChange      = {this.handleChange}
+                    id            = "standard-password-input"
+                    color         = "secondary"
+                    name          = "password"
+                    type          = "password"
+                    label         = "Password"
+                    validators    ={['required']}
+                    errorMessages ={['Password is required']}
                     fullWidth
                 />
-                <TextField 
-                    className = {classes.textInput}
-                    id        ="standard-password-input"
-                    color     = "secondary"
-                    type      = "password"
-                    label     = "Repeat Password" 
+                <TextValidator 
+                    className     = {classes.textInput}
+                    value         = {repeatPassword}
+                    onChange      = {this.handleChange}
+                    id            = "standard-password-input"
+                    color         = "secondary"
+                    name          = "repeatPassword"
+                    type          = "password"
+                    label         = "Re-Enter Password"
+                    validators    ={['doPasswordMatch', 'required']}
+                    errorMessages ={['The Password entered does not match' ,'This field is required']}
                     fullWidth
                 />
                 <CardActions>
                     <Button 
-                        variant   = "outlined" 
+                        variant   = "outlined"
+                        type      = 'submit' 
                         color     = "secondary"
                         className = {classes.submitBtn}
                     >
                         Submit
                     </Button>
                 </CardActions>
-            </form>
+            </ValidatorForm>
             <div className={classes.hr}></div>
             <CardActions>
                 <Button
                     variant   = "text"   
                     className = {classes.member}
-                    
+                    onClick   = {onClick}
+                    component = {Link}
+                    to        = {'/sign-in-up/login'}               
                 >
                     Already a Member?
                 </Button>
            </CardActions>
         </>
     )
+    }
 }
 
-export default SignUp;
+export default withStyles(styles)(SignUp); 
