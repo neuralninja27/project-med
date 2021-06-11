@@ -12,8 +12,8 @@ const styles = ({
     titleText: {
         position: "absolute",
         color: "#FFD60A",
-        top: "20%",
-        maxWidth:"40%",
+        top: "30%",
+        maxWidth:"30%",
     },
     searchField: {
         marginTop: "2rem",
@@ -25,7 +25,7 @@ const styles = ({
         borderRadius: "5px",
         border: "none",
         outline: "none",
-        minWidth: "30%",
+        minWidth: "25%",
         top: "50%",
         color: "#49c1bf",
         '&::placeholder': {
@@ -37,14 +37,15 @@ const styles = ({
         borderRadius: "5px",
         position: "absolute",
         minHeight: "3.5em",
-        width: "15%",
+        width: "10%",
         textAlign: "center",
         lineheight:"3em",
         backgroundColor: "rgba(	190, 233, 232, 0.3)",
+        transition: "0.5s eas-in-out",
         top: "60%",
         color: "#49c1bf",
         "&:hover": {
-            
+            backgroundColor: "rgba(	190, 233, 232, 0.2)",
         } 
     },
     background: {
@@ -67,7 +68,7 @@ class Home extends Component {
             >
                 <Typography
                     className = {classes.titleText}
-                    variant = "h3"
+                    variant = "h4"
                     align   = "left"
                 >
                     Need medicines to be delivered at your doorsteps?don't worry we got you covered!!

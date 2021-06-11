@@ -1,38 +1,66 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Navbar.css';
+import AppBar from '@material-ui/core/AppBar';
+import MenuIcon from '@material-ui/icons/Menu';
+import Toolbar from '@material-ui/core/Toolbar';
+import Container from '@material-ui/core/Container';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = ({
+    navbar: {
+        backgroundColor: "transparent",
+        lineHeight: "150px",
+        padding: "2% 2.8%",
+    },
+    brandName: {
+        textDecoration: "none",
+        color: "rgba(255, 255, 255, 0.8)",
+        textTransform: "uppercase",
+        transition: "0.3s ease-in-out",
+        "&:hover": {
+            color: "rgba(190, 233, 232)"
+        }
+    },
+    menuIcon: {
+        backgroundColor: "rgba(42, 27, 44, 0.7)",
+        position: "absolute",
+        marginRight: "1.5em",
+        right:"0",
+        color: "#bee9e8",
+        "&:hover": {
+            backgroundColor: "rgba(42, 27, 44, 1)",
+            transition: "0.3s ease-in-out",
+        }
+    },
+})
 
 class Navbar extends Component {
     render() {
+        const { classes } = this.props;
         return (
-            <div className ="Navbar">
-                <nav className= "navbar navbar-expand-lg navbar-dark bg-dark">
-                    <div className = "container-fluid">
-                        <Link className= "Navbar-brand" to="/">
-                            Med-Project
+            <>
+                <AppBar className= {classes.navbar} elevation={0}>
+                    <Toolbar>
+                        <Link className ={classes.brandName} to = "/">
+                            <Typography
+                                variant= "h6"
+                            >
+                                Project-Med
+                            </Typography>
                         </Link>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul className= "navbar-nav me-auto mb-lg-0">
-                                <Link className= "Navbar-Link" to="/about">
-                                    <li className= "nav-item">
-                                        About
-                                    </li>
-                                </Link>
-                                <Link className="Navbar-Link" to= "/sign-in-up/login">
-                                    <li className= "nav-item ">
-                                        Register | Login
-                                    </li>
-                                </Link>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
+                        <IconButton 
+                            className  = {classes.menuIcon}
+                            aria-label = "menu"
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                    </Toolbar>
+                </AppBar>
+            </>
         )
     }
 }
 
-export default Navbar;
+export default withStyles(styles)(Navbar);

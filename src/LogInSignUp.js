@@ -90,7 +90,6 @@ function LogInSignUp({login}){
 
     const logInRef = useRef(null);
     const signUpRef = useRef(null);
-    
     // useEffect here is used to focus on the Log in/ Sign up button on every refresh
     useEffect( ()=>{
         if(login)
