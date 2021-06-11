@@ -1,19 +1,91 @@
 import React, { Component } from 'react';
-import { Typography } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import SearchIcon from '@material-ui/icons/Search';
+import Container  from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from "@material-ui/core/styles";
+import background from "./images/background.svg";
+const styles = ({
+    container: {
+        padding: "0 5%",
+    },
+    titleText: {
+        position: "absolute",
+        color: "#FFD60A",
+        top: "20%",
+        maxWidth:"40%",
+    },
+    searchField: {
+        marginTop: "2rem",
+        position: "absolute",
+        height: "3em",
+        padding:"0 0 0 10px",
+        lineheight:"3em",
+        backgroundColor: "rgba(	190, 233, 232, 0.3)",
+        borderRadius: "5px",
+        border: "none",
+        outline: "none",
+        minWidth: "30%",
+        top: "50%",
+        color: "#49c1bf",
+        '&::placeholder': {
+            color: "#49c1bf"
+        }
+    },
+    searchBtn: {
+        marginTop: "2rem",
+        borderRadius: "5px",
+        position: "absolute",
+        minHeight: "3.5em",
+        width: "15%",
+        textAlign: "center",
+        lineheight:"3em",
+        backgroundColor: "rgba(	190, 233, 232, 0.3)",
+        top: "60%",
+        color: "#49c1bf",
+        "&:hover": {
+            
+        } 
+    },
+    background: {
+        position: "absolute",
+        right:0,
+        height: "780px",
+        width: "1000px",
+        zIndex: "-1"
+    
+    }
+});
 
 class Home extends Component {
     render() {
+        const { classes } = this.props;
         return (
-            <div>
+            <Container
+                className = {classes.container} 
+                maxWidth={false}
+            >
                 <Typography
-                    variant = "h1"
-                    align   = "center"
+                    className = {classes.titleText}
+                    variant = "h3"
+                    align   = "left"
                 >
-                    This is the Home Page
+                    Need medicines to be delivered at your doorsteps?don't worry we got you covered!!
                 </Typography>
-            </div>
+                <form autoComplete="off">
+                    <input className={classes.searchField} placeholder= "Search for medicines..."/>
+                    <Button
+                        className = {classes.searchBtn}
+                        // startIcon = {<SearchIcon />}
+                        variant   = "outlined" 
+                    >
+                        Search
+                    </Button>
+                </form>
+                <img src={background} className={classes.background} alt="background-decoration"/>
+            </Container>
         )
     }
 }
 
-export default Home;
+export default withStyles(styles)(Home);
