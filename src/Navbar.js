@@ -7,38 +7,77 @@ import Container from '@material-ui/core/Container';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from "@material-ui/core/styles";
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 
 const styles = ({
     navbar: {
         backgroundColor: "transparent",
-        lineHeight: "150px",
-        padding: "2% 2.8%",
+        padding: "3% 2.8%",
     },
     brandName: {
         textDecoration: "none",
         color: "rgba(255, 255, 255, 0.8)",
         textTransform: "uppercase",
         transition: "0.3s ease-in-out",
+        marginRight: "3em",
         "&:hover": {
             color: "rgba(190, 233, 232)"
         }
     },
-    menuIcon: {
-        backgroundColor: "rgba(42, 27, 44, 0.7)",
-        position: "absolute",
-        marginRight: "1.5em",
-        right:"0",
-        color: "#bee9e8",
+    navLink: {
+        textDecoration: "none",
+        color: "#130F1a",
+        padding: "0 1%",
+        background: "linear-gradient(to right, #da4453, #f37335, #f9d423, #ff4e50);",
+        backgroundSize: "300% 100%",
+        borderRadius: "10px",
+        textTransform: "uppercase",
+        marginRight: "3em",
+        transition: "all 0.4s ease-in-out",
         "&:hover": {
-            backgroundColor: "rgba(42, 27, 44, 1)",
-            transition: "0.3s ease-in-out",
+            color: "#130F1a",
+            backgroundPosition: "100% 0",
+            transition: "all 0.4s ease-in-out",    
+        }
+    },
+    cartBtn: {
+        textDecoration: "none",
+        fontWeight: "bold",
+        color: "rgba(255, 255, 255, 1)",
+        padding: "1%",
+        background: "linear-gradient(to right,  #3B1D41, #D07578, #ad5389, #3c1053);",
+        backgroundSize: "300% 100%",
+        borderRadius: "1000px",
+        transition: "all 0.4s ease-in-out",
+        position: "absolute",
+        right: 0,
+        marginRight: "2%",
+        textTransform: "uppercase",
+        "&:hover": {    
+            transition: "all 0.4s ease-in-out",
+            backgroundPosition: "100% 0",
+            color: "rgba(190, 233, 232)"
         }
     },
 })
 
 class Navbar extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            navToggle: false
+        };
+        this.handleNavMenu = this.handleNavMenu.bind(this);
+    }
+
+    handleNavMenu() {
+        this.setState({
+            navToggle: true
+        });
+    }
     render() {
-        const { classes } = this.props;
+        const { classes } = this.props; 
+        const {navToggle} = this.state;
         return (
             <>
                 <AppBar className= {classes.navbar} elevation={0}>
@@ -50,12 +89,30 @@ class Navbar extends Component {
                                 Project-Med
                             </Typography>
                         </Link>
-                        <IconButton 
-                            className  = {classes.menuIcon}
-                            aria-label = "menu"
-                        >
-                            <MenuIcon />
-                        </IconButton>
+                        <Link className ={classes.navLink} to = "/about-us">
+                            <Typography
+                                variant= "subtitle2"
+                            >
+                                About Us
+                            </Typography>
+                        </Link>
+                        <Link className ={classes.navLink} to = "/order-medicines">
+                            <Typography
+                                variant= "subtitle2"
+                            >
+                                Order Medicines
+                            </Typography>
+                        </Link>
+                        <Link className ={classes.navLink} to = "/order-medicines">
+                            <Typography
+                                variant= "subtitle2"
+                            >
+                                HealthCare Products
+                            </Typography>
+                        </Link>
+                        <Link to= "" className={classes.cartBtn}>
+                            <ShoppingCartOutlinedIcon />
+                        </Link>
                     </Toolbar>
                 </AppBar>
             </>
