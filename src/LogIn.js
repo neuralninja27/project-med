@@ -95,10 +95,17 @@ class LogIn extends Component{
         })
         .then(() =>{
             console.log("Data has been sent successfully");
-            console.log(payload);
+            this.resetFormInputs();
         })
         .catch(() =>{
             console.log("Oops some error occured in sending data");
+        });
+    }
+
+    resetFormInputs = () => {
+        this.setState({
+            emailId        : '' ,
+            password       : '',
         });
     }
 

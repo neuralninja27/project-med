@@ -96,12 +96,21 @@ class SignUp extends Component{
         })
         .then(() =>{
             console.log("Data has been sent successfully");
-            console.log(payload);
+            this.resetFormInputs();
         })
         .catch(() =>{
             console.log("Oops some error occured in sending data");
         });
     };
+
+    resetFormInputs = () => {
+        this.setState({
+            name           : '',
+            emailId        : '' ,
+            password       : '',
+            repeatPassword : ''
+        });
+    }
 
     render(){
         const { classes, onClick } = this.props;
