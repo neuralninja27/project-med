@@ -22,11 +22,11 @@ const data = {
 const newSignUp = new SignUp(data);
  
 // Saving the data into the databse using .save()
-newSignUp.save((error) => {
-    if(error)
-        console.log("Something Went Wrong", error);
-    else
-        console.log("New Signup user has been saved");
-})
+// newSignUp.save((error) => {
+//     if(error)
+//         console.log("Something Went Wrong", error);
+//     else
+//         console.log("New Signup user has been saved");
+// })
 
 module.exports = SignUp;

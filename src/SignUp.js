@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { withStyles } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
@@ -80,9 +81,27 @@ class SignUp extends Component{
         })
     }
 
-    handleSubmit (event){
-
-    }
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const {name, emailId, password} = this.state;
+        const payload = {
+            name: name,
+            emailId: emailId,
+            password: password
+        }
+        axios({
+            url: "/api/sign-up/save",
+            method: "POST",
+            data: payload
+        })
+        .then(() =>{
+            console.log("Data has been sent successfully");
+            console.log(payload);
+        })
+        .catch(() =>{
+            console.log("Oops some error occured in sending data");
+        });
+    };
 
     render(){
         const { classes, onClick } = this.props;
