@@ -1,4 +1,5 @@
 import React, {Component}from 'react';
+import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import { withStyles } from "@material-ui/core/styles";
@@ -80,8 +81,25 @@ class LogIn extends Component{
         })
     }
 
-    handleSubmit (event){
-
+    handleSubmit = (event) =>{
+        event.preventDefault();
+        const { emailId, password} = this.state;
+        const payload = {
+            emailId: emailId,
+            password: password
+        }
+        axios({
+            url: "/api/login/save",
+            method: "POST",
+            data: payload
+        })
+        .then(() =>{
+            console.log("Data has been sent successfully");
+            console.log(payload);
+        })
+        .catch(() =>{
+            console.log("Oops some error occured in sending data");
+        });
     }
 
     render(){

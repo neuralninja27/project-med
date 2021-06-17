@@ -90,7 +90,7 @@ class SignUp extends Component{
             password: password
         }
         axios({
-            url: "/api/sign-up/save",
+            url: "/api/signup/save",
             method: "POST",
             data: payload
         })
