@@ -31,8 +31,8 @@ const Product = mongoose.model('products', ProductSchema);
 connectDb();
 
 app.use(express.json());
-app.use(express.urlencoded());
-app.use('/api', routes);
+app.use(express.urlencoded({extended: true}));
+app.use('/', routes);
 
 app.listen(PORT, () => {
     console.log(`App is listening on port ${PORT}`);

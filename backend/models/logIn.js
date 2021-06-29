@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 // Creating the Schema
 const Schema = mongoose.Schema;
 
-const SignUpSchema = new Schema({
-    existingEmailId: String,
-    existingPassword: String
+const LogInSchema = new Schema({
+    emailId: String,
+    password: String
 });
 
 // Creating the NewUser model
-const SignUp = mongoose.model('SignUp', SignUpSchema);
+const LogIn = mongoose.model('LogIn', LogInSchema);
 
 // --------------Dummy data Insertion --------------
 // const data = {
@@ -19,7 +19,7 @@ const SignUp = mongoose.model('SignUp', SignUpSchema);
 // }
 
 // in order to save to database we need to create an instance of the model
-// const newSignUp = new SignUp(data);
+// const newSignUp = new LogIn(data);
  
 // Saving the data into the databse using .save()
 // newSignUp.save((error) => {
@@ -30,4 +30,4 @@ const SignUp = mongoose.model('SignUp', SignUpSchema);
 // })
 // --------------Dummy data Insertion --------------
 
-module.exports = SignUp;
+module.exports = LogIn;

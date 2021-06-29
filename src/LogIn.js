@@ -89,7 +89,7 @@ class LogIn extends Component{
             password: password
         }
         axios({
-            url: "/api/login/save",
+            url: "/login/save",
             method: "POST",
             data: payload
         })
