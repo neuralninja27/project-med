@@ -4,7 +4,7 @@ const LogIn   = require('../models/logIn');
 
 const router = express.Router();
 
-router.post('/signup/save', (req, res) =>{
+router.post('/sign-in-up/signup/save', (req, res) =>{
     const data = req.body;
     const newSignUp = new SignUp(data);
     // Sending and saving the data recieved from frontend to MongoDb
@@ -22,7 +22,7 @@ router.post('/signup/save', (req, res) =>{
     console.log("Body: ", data);
 });
 
-router.post('/login/save', (req, res) =>{
+router.post('/sign-in-up/login/save', (req, res) =>{
     const data = req.body;
     const newLogIn = new LogIn(data);
     // Sending and saving the data recieved from frontend to MongoDb

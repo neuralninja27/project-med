@@ -21,12 +21,15 @@ const useStyles = makeStyles({
     },
     card: {
         // marginTop: "2em",
-        maxWidth: "35vw",
+        position: "absolute",
+        minWidth: "35vw",
+        top: "20%",
+        left:"32.5%",
         paddingTop: "20px",
-        minHeight: "70vh",
+        minHeight: "75vh",
         borderRadius: "10px",
-        margin: "7% auto",
-        backgroundColor: "#cffffd"
+        backgroundColor: "#CDFFF9",
+        boxShadow: '1px -1px 10px 5px #A07178',
     },
     cardContainer: {
         margin: "1.4em 1.2em",
@@ -41,20 +44,12 @@ const useStyles = makeStyles({
         transition: "0.35s ease-in-out", 
         '&:hover': {
             cursor: "pointer",
-            textDecoration: "none !important",
-            backgroundColor: "#f51978",
-            backgroundImage: "linear-gradient(216deg, #f51978, #19dcf5)",
-            backgroundSize: "400%",
-            backgroundRepeat: "repeat",
-            backgroundClip: "text",
-            color: "transparent",
-            animation: `$BtnAnimations 4s ease infinite`,
+            color: "rgba(245, 25, 120, 0.5)",
         },
         '&:focus':{
             color: "#f51978",
             outline: "none"
         },
-        
     },
     logInBtn: {
         textDecoration: "none",
@@ -66,14 +61,7 @@ const useStyles = makeStyles({
         transition: "0.35s ease-in-out", 
         '&:hover': {
             cursor: "pointer",
-            textDecoration: "none !important",
-            backgroundColor: "#f51978",
-            backgroundImage: "linear-gradient(216deg, #f51978, #19dcf5)",
-            backgroundSize: "400%",
-            backgroundRepeat: "repeat",
-            backgroundClip: "text",
-            color: "transparent",
-            animation: `$BtnAnimations 4s ease infinite`,
+            color: "rgba(245, 25, 120, 0.5)",
         },
         '&:focus':{
             color: "#f51978",
