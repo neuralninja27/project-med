@@ -26,7 +26,7 @@ const styles = ({
         border: "none",
         outline: "none",
         minWidth: "25%",
-        top: "50%",
+        top: "65%",
         color: "#49c1bf",
         '&::placeholder': {
             color: "#49c1bf"
@@ -42,7 +42,8 @@ const styles = ({
         lineheight:"3em",
         backgroundColor: "rgba(	190, 233, 232, 0.3)",
         transition: "0.5s eas-in-out",
-        top: "60%",
+        top: "65%",
+        left: "32%",
         color: "#49c1bf",
         "&:hover": {
             backgroundColor: "rgba(	190, 233, 232, 0.2)",
@@ -59,8 +60,23 @@ const styles = ({
 });
 
 class Home extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            searchProducts: ''
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event){
+        this.setState({
+            [event.target.name]: event.target.value,
+        })
+    }
+
     render() {
         const { classes } = this.props;
+        const { searchProducts } = this.state
         return (
             <Container
                 className = {classes.container} 
@@ -68,13 +84,19 @@ class Home extends Component {
             >
                 <Typography
                     className = {classes.titleText}
-                    variant = "h4"
+                    variant = "h3"
                     align   = "left"
                 >
                     Need medicines to be delivered at your doorsteps?don't worry we got you covered!!
                 </Typography>
                 <form autoComplete="off">
-                    <input className={classes.searchField} placeholder= "Search for medicines..."/>
+                    <input 
+                        className   = {classes.searchField} 
+                        onChange    = {this.handleChange} 
+                        value       = {searchProducts} 
+                        name        = "searchProducts" 
+                        placeholder = "Search for medicines..."
+                    />
                     <Button
                         className = {classes.searchBtn}
                         // startIcon = {<SearchIcon />}
