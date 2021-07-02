@@ -61,9 +61,6 @@ const styles = ({
 class Navbar extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            navToggle: false
-        };
         this.handleNavMenu = this.handleNavMenu.bind(this);
     }
 
@@ -73,8 +70,7 @@ class Navbar extends Component {
         });
     }
     render() {
-        const { classes } = this.props; 
-        const {navToggle} = this.state;
+        const { classes } = this.props;
         return (
             <>
                 <AppBar className= {classes.navbar} elevation={0}>
@@ -93,14 +89,14 @@ class Navbar extends Component {
                                 About Us
                             </Typography>
                         </Link>
-                        <Link className ={classes.navLink} to = "/order-medicines">
+                        <Link className ={classes.navLink} to = "/order-meds">
                             <Typography
                                 variant= "subtitle2"
                             >
                                 Order Medicines
                             </Typography>
                         </Link>
-                        <Link className ={classes.navLink} to = "/order-medicines">
+                        <Link className ={classes.navLink} to = "/health-care">
                             <Typography
                                 variant= "subtitle2"
                             >

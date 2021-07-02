@@ -1,8 +1,19 @@
 const express = require('express');
 const SignUp  = require('../models/signUp');
 const LogIn   = require('../models/logIn');
+const Products = require('../models/products');
 
 const router = express.Router();
+
+router.get("/products", (req, res) => {
+    Products.find()
+        .then((product) => 
+            res.json(product)
+        )
+        .catch((error) => 
+            console.log(error) 
+        );
+});
 
 router.post('/sign-in-up/signup/save', (req, res) =>{
     const data = req.body;
