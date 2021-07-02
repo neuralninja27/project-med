@@ -9,7 +9,7 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 const styles = ({
     navbar: {
         backgroundColor: "transparent",
-        padding: "3% 2.8%",
+        padding: "1% 2.8%",
     },
     brandName: {
         textDecoration: "none",

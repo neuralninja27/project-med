@@ -14,7 +14,7 @@ const styles = ({
     titleText: {
         position: "absolute",
         color: "#FFD60A",
-        top: "30%",
+        top: "17%",
         maxWidth:"30%",
     },
     searchField: {
@@ -115,7 +115,7 @@ class Home extends Component {
             >
                 <Typography
                     className = {classes.titleText}
-                    variant = "h4"
+                    variant = "h3"
                     align   = "left"
                 >
                     Need medicines to be delivered at your doorsteps?don't worry we got you covered!!

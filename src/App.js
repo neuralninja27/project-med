@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 import Home from './Home';
 import About from './About';
 import LogInSignUp from './LogInSignUp';
-import DisplayProducts from './DisplayProduct';
+import OrderProducts from './OrderProducts';
 import './App.css';
 
 // DARK SHADE
@@ -53,11 +53,11 @@ class App extends Component {
                             <LogInSignUp login/>
                         </Route>
                         <Route path="/order-meds" exact>
-                            <DisplayProducts products={products}/>
+                            <OrderProducts products={products}/>
                         </Route>
-                        <Route path="/health-care" exact>
-                            <DisplayProducts />
-                        </Route>
+                        {/* <Route path="/health-care" exact>
+                            <OrderProducts />
+                        </Route> */}
                         <Route path="/sign-in-up/signup" exact>
                             <LogInSignUp />
                         </Route>
