@@ -6,6 +6,7 @@ import Home from './Home';
 import About from './About';
 import LogInSignUp from './LogInSignUp';
 import OrderProducts from './OrderProducts';
+import Prescription from './Prescription';
 import './App.css';
 
 // DARK SHADE
@@ -45,6 +46,9 @@ class App extends Component {
                     <Switch>
                         <Route path="/" exact>
                             <Home />
+                        </Route>
+                        <Route path = "/upload-prescription" exact>
+                            <Prescription />
                         </Route>
                         <Route path="/about-us" exact>
                             <About />
