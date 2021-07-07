@@ -5,13 +5,13 @@ import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import Container  from '@material-ui/core/Container';
+import PublishIcon from '@material-ui/icons/Publish';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from "@material-ui/core/styles";
 import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { CallMissedSharp } from '@material-ui/icons';
 const styles = ({
     title: {
         color: "#FFD60A",
@@ -74,6 +74,11 @@ const styles = ({
     uploadBtn: {
         textDecoration: "none",
         minWidth: "100%",
+        height: "8em",
+        "&:hover": {    
+            transition: "0.3s all ease-in-out",
+            color: "#f51978"
+        }
     },
 });
 
@@ -150,7 +155,8 @@ class OrderProducts extends Component {
                             <Button
                                 className = {classes.uploadBtn}  
                                 to        = {"/upload-prescription"} 
-                                component = {Link} 
+                                component = {Link}
+                                startIcon = {<PublishIcon />} 
                                 variant   = "outlined"
                             >
                                 Upload Prescription

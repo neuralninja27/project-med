@@ -7,6 +7,7 @@ import About from './About';
 import LogInSignUp from './LogInSignUp';
 import OrderProducts from './OrderProducts';
 import Prescription from './Prescription';
+import UploadedPrescription from './UploadedPrescription';
 import './App.css';
 
 // DARK SHADE
@@ -64,6 +65,9 @@ class App extends Component {
                         </Route> */}
                         <Route path="/sign-in-up/signup" exact>
                             <LogInSignUp />
+                        </Route>
+                        <Route path= "/user/uploaded-prescriptions">
+                            <UploadedPrescription />
                         </Route>
                     </Switch>
                 </div>
